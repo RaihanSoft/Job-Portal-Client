@@ -40,8 +40,8 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <NavLink to={'/register'} className="btn">Register</NavLink>
-        <a className="btn ml-10 ">Sign in</a>
+        <NavLink to={'/signIn'} className="btn ml-10 ">Register</NavLink>
+        <NavLink to={'/register'} className="btn">Sign in</NavLink>
       </div>
     </div>
   )

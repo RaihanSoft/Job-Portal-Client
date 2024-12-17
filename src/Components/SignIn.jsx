@@ -12,7 +12,14 @@ const SignIn = () => {
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
+
         CreateUser(email, password)
+        .then(result => {
+            console.log(result)
+        })
+        .then(error=>{
+            console.log(error.message)
+        })
 
         // Email validation regex
         const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;

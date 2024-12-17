@@ -7,10 +7,11 @@ const Navbar = () => {
   const { user, SignOut } = useContext(AuthContext)
   const links =
     <>
-      <li><NavLink>Home</NavLink></li>
-      <li><NavLink>Submenu 1</NavLink></li>
-      <li><NavLink>Submenu 2</NavLink></li>
-      <li><NavLink>Item 3</NavLink></li>
+      <li><NavLink to={'/'} >Home</NavLink></li>
+      <li><NavLink to={'/allJobs'} >All Jobs</NavLink></li>
+      <li><NavLink to={'/addJobs'}>Add Jobs</NavLink></li>
+      <li><NavLink to={'/myApplications'}>My Applications</NavLink></li>
+      <li><NavLink to={'/myJobPost'}>My Job Post</NavLink></li>
     </>
 
   const handleSignOut = () => {

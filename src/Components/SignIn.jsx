@@ -1,69 +1,32 @@
-import React, { useContext } from "react";
 import Lottie from "lottie-react";
 import LoginAnimation from "../assets/Login.json";
-import { toast, ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
 import AuthContext from "../Context/AuthContext/AuthContext";
+import { useContext } from "react";
 
 const SignIn = () => {
-    const { CreateUser } = useContext(AuthContext)
+    const { Login } = useContext(AuthContext);
+
     const handleLogin = (e) => {
         e.preventDefault();
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
 
-        CreateUser(email, password)
-        .then(result => {
-            console.log(result)
-        })
-        .then(error=>{
-            console.log(error.message)
-        })
-
-        // Email validation regex
-        const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-
-        // Password validation regex
-        const uppercaseRegex = /[A-Z]/;
-        const lowercaseRegex = /[a-z]/;
-        const numberRegex = /\d/;
-        const specialCharRegex = /[!@#$%^&*()]/;
-
-        // Check if the email matches the regex
-        if (!emailRegex.test(email)) {
-            toast.error('Please enter a valid email address.');
-            return;
-        }
-
-        // Check password conditions
-        if (password.length < 8) {
-            toast.error('Password must be at least 8 characters long.');
-            return;
-        }
-        if (!uppercaseRegex.test(password)) {
-            toast.error('Password must contain at least one uppercase letter.');
-            return;
-        }
-        if (!lowercaseRegex.test(password)) {
-            toast.error('Password must contain at least one lowercase letter.');
-            return;
-        }
-        if (!numberRegex.test(password)) {
-            toast.error('Password must contain at least one number.');
-            return;
-        }
-        if (!specialCharRegex.test(password)) {
-            toast.error('Password must contain at least one special character (!@#$%^&*()).');
-            return;
-        }
-
-        // Proceed with registration if email and password are valid
-        console.log('Email:', email);
-        console.log('Password:', password);
-
-        // Add any additional logic for registering the user here
-        toast.success('Registration successful!');
+        Login(email, password)
+            .then((result) => {
+                toast.success("Welcome back! Login successful.", {
+                    position: toast.POSITION.TOP_CENTER,
+                });
+                console.log("Sign in successful:", result);
+            })
+            .catch((error) => {
+                console.error("Login error:", error);
+                toast.error("Login failed. Please try again.", {
+                    position: toast.POSITION.TOP_CENTER,
+                });
+            });
     };
 
     return (
@@ -98,6 +61,7 @@ const SignIn = () => {
                     </form>
                 </div>
             </div>
+            {/* Toast Container to display toast notifications */}
             <ToastContainer />
         </div>
     );

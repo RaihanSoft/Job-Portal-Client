@@ -1,7 +1,12 @@
 import Lottie from "lottie-react"
 import LotifiRegister from '../assets/Register.json'
+import { toast, ToastContainer } from "react-toastify"
+import AuthContext from "../Context/AuthContext/AuthContext"
+import { useContext } from "react"
 
 const Regiater = () => {
+
+    const { handleRegister } = useContext(AuthContext)
     const hangleRegister = (e) => {
         e.preventDefault()
         const form = e.target
@@ -11,6 +16,58 @@ const Regiater = () => {
         const password = form.password.value
         const Repassword = form.Repassword.value
         console.log(name, email, userName, password, Repassword)
+
+        handleRegister(email, password)
+            .then(result => {
+                console.log(result)
+            })
+            .then(error => {
+                console.log(error.message)
+            })
+        const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+        // Password validation regex
+        const uppercaseRegex = /[A-Z]/;
+        const lowercaseRegex = /[a-z]/;
+        const numberRegex = /\d/;
+        const specialCharRegex = /[!@#$%^&*()]/;
+
+        // Check if the email matches the regex
+        if (password !== Repassword) {
+            setError("Password didn't match");
+            return;
+          }
+        if (!emailRegex.test(email)) {
+            toast.error('Please enter a valid email address.');
+            return;
+        }
+
+        // Check password conditions
+        if (password.length < 8) {
+            toast.error('Password must be at least 8 characters long.');
+            return;
+        }
+        if (!uppercaseRegex.test(password)) {
+            toast.error('Password must contain at least one uppercase letter.');
+            return;
+        }
+        if (!lowercaseRegex.test(password)) {
+            toast.error('Password must contain at least one lowercase letter.');
+            return;
+        }
+        if (!numberRegex.test(password)) {
+            toast.error('Password must contain at least one number.');
+            return;
+        }
+        if (!specialCharRegex.test(password)) {
+            toast.error('Password must contain at least one special character (!@#$%^&*()).');
+            return;
+        }
+
+
+        // Add any additional logic for registering the user here
+        toast.success('Registration successful!');
+
     }
     return (
         <div>
@@ -69,6 +126,8 @@ const Regiater = () => {
                     </div>
                 </div>
             </div>
+            <ToastContainer />
+
         </div>
     )
 }

@@ -1,15 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import Lottie from "lottie-react";
 import LoginAnimation from "../assets/Login.json";
 import { toast, ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import AuthContext from "../Context/AuthContext/AuthContext";
 
 const SignIn = () => {
+    const { CreateUser } = useContext(AuthContext)
     const handleLogin = (e) => {
         e.preventDefault();
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
+        CreateUser(email, password)
 
         // Email validation regex
         const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;

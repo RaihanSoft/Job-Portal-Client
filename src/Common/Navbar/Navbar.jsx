@@ -59,8 +59,10 @@ const Navbar = () => {
               <button onClick={handleSignOut} className="btn ml-10 ">LogOut</button>
             </> :
             <>
-              <NavLink to={'/signIn'} className="btn ml-10 ">Register</NavLink>
-              <NavLink to={'/register'} className="btn">Sign in</NavLink>
+  
+                <NavLink to={'/signIn'} className="btn ml-10 ">Register</NavLink>
+                <NavLink to={'/register'} className="btn ml-5">Sign in</NavLink>
+    
             </>
         }
 

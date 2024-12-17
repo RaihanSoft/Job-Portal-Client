@@ -3,6 +3,7 @@ import LotifiRegister from '../assets/Register.json'
 import { toast, ToastContainer } from "react-toastify"
 import AuthContext from "../Context/AuthContext/AuthContext"
 import { useContext } from "react"
+import SocialLogin from "../Common/SocialLogin/SocialLogin"
 
 const Regiater = () => {
 
@@ -123,6 +124,7 @@ const Regiater = () => {
                                 <button className="btn btn-primary">Register</button>
                             </div>
                         </form>
+                            <SocialLogin />
                     </div>
                 </div>
             </div>

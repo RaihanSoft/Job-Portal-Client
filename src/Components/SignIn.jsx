@@ -4,6 +4,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer, toast } from "react-toastify";
 import AuthContext from "../Context/AuthContext/AuthContext";
 import { useContext } from "react";
+import SocialLogin from "../Common/SocialLogin/SocialLogin";
 
 const SignIn = () => {
     const { Login } = useContext(AuthContext);
@@ -59,6 +60,7 @@ const SignIn = () => {
                             <button type="submit" className="btn btn-primary">Login</button>
                         </div>
                     </form>
+            <SocialLogin />
                 </div>
             </div>
             {/* Toast Container to display toast notifications */}

@@ -30,7 +30,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/myApplications",
-        element: <MyApplications />
+        element: <PrivateRoute><MyApplications /></PrivateRoute>
       },
       {
         path: "/myJobPost",

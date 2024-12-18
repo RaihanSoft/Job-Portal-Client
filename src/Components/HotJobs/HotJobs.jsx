@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { FaDollarSign } from "react-icons/fa"
+import { NavLink } from "react-router-dom"
 
 const HotJobs = () => {
 
@@ -43,6 +44,7 @@ const HotJobs = () => {
                                     </p>
                                 </div>
                             </div>
+                            <NavLink to={`/jobs/${job._id}`} > <button className="btn btn-block btn-accent" >Apply Now</button></NavLink>
                         </div>
                     )
                 }

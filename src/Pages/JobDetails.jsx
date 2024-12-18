@@ -1,8 +1,8 @@
 import React from 'react'
-import { useLoaderData } from 'react-router-dom'
+import { NavLink, useLoaderData } from 'react-router-dom'
 
 const JobDetails = () => {
-  const { title, location, jobType, category, applicationDeadline, description, company_logo } = useLoaderData()
+  const { title, _id, location, jobType, category, applicationDeadline, description, company_logo } = useLoaderData()
   return (
     <div className='flex items-center justify-center py-10 ' >
       <div className="card bg-base-100 w-96 shadow-xl">
@@ -21,6 +21,9 @@ const JobDetails = () => {
             alt="Shoes"
             className='w-72' />
         </figure>
+        <NavLink to={`/jobApply/${_id}`}>
+          <button className='btn btn-block btn-accent' >Apply Now</button>
+        </NavLink>
       </div>
     </div>
   )

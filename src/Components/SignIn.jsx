@@ -5,9 +5,13 @@ import { ToastContainer, toast } from "react-toastify";
 import AuthContext from "../Context/AuthContext/AuthContext";
 import { useContext } from "react";
 import SocialLogin from "../Common/SocialLogin/SocialLogin";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const SignIn = () => {
     const { Login } = useContext(AuthContext);
+    const location = useLocation()
+    const navigate = useNavigate()
+    const from = location.state || '/';
 
     const handleLogin = (e) => {
         e.preventDefault();
@@ -17,6 +21,7 @@ const SignIn = () => {
 
         Login(email, password)
             .then((result) => {
+                navigate(from);
                 toast.success("Welcome back! Login successful.", {
                     position: toast.POSITION.TOP_CENTER,
                 });
@@ -60,7 +65,7 @@ const SignIn = () => {
                             <button type="submit" className="btn btn-primary">Login</button>
                         </div>
                     </form>
-            <SocialLogin />
+                    <SocialLogin />
                 </div>
             </div>
             {/* Toast Container to display toast notifications */}
